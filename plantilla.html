@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="bower_components/jquery/jquery.js"></script>
+
+	<script src="bower_components/mustache/mustache.js"></script>
+
+</head>
+<body>
+
+	<div id="empleadoBox"></div>
+	
+</body>
+
+<script type="text/javascript">
+	var empleado = {nombre:{primernombre : "Jader", segundonombre : "Rojas Jimenez"},
+	    apellido: "Rojas Jimenez", 
+	    skills:"java,javascript,Node",
+	    "habilidades": [
+        {"habilidad": "Escribir"},
+        {"habilidad": "Jugar"},       
+	    ]
+    };
+	
+     var myArrayTemplate = ["Mi nombre es {{nombre.primernombre,nombre.segundonombre}} Apellidos: {{apellido}} Skills: {{skills}}", 
+         "<ul>{{#habilidades}}","<li>{{habilidad}}</li>","{{/habilidades}}</ul>"];
+
+     var myStringTemplate = myArrayTemplate.join("");	
+
+     //compilar Mustache la plantilla para generar mas rapido el contenido
+     myTemplate = Mustache.compile(myStringTemplate);
+
+     $("#empleadoBox").html(myTemplate(empleado)) ;
+     //$("#empleadoBox").html(Mustache.to_html(myTemplate,empleado));
+     
+</script>
+</html>
